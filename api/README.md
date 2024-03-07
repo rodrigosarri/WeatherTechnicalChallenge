@@ -82,3 +82,9 @@ python manage.py runserver
 Agora, o servidor estará rodando e você poderá acessar a API conforme configurado em seu projeto Django REST framework.
 
 O endereço padrão está disponível em: http://127.0.0.1:8000
+
+## Postman Collection
+
+Abaixo disponibilizo para download a coleção para importação no Postman com todos os endpoints.
+
+[Weather API Postman Collection](https://github.com/rodrigosarri/WeatherTechnicalChallenge/blob/main/api/WeatherFlowAPI.postman_collection.json)

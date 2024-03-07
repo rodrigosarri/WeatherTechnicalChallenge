@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "a09b1684-26e2-4db3-aec5-7a997d9571ac",
+		"name": "WeatherFlow API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9202301"
+	},
+	"item": [
+		{
+			"name": "/weather/?lat=-20.8125851&lon=-49.3804212",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dt\": 1709769600,\r\n    \"lat\": -20.8125851,\r\n    \"lon\": -49.3804212,\r\n    \"main_temp\": 300.12,\r\n    \"main_feels_like\": 301.49,\r\n    \"main_temp_min\": 297.64,\r\n    \"main_temp_max\": 300.12,\r\n    \"main_pressure\": 1011,\r\n    \"main_sea_level\": 1011,\r\n    \"main_grnd_level\": 957,\r\n    \"main_humidity\": 64,\r\n    \"main_temp_kf\": 2.48,\r\n    \"weather_id\": 500,\r\n    \"weather_main\": \"Rain\",\r\n    \"weather_description\": \"chuva leve\",\r\n    \"weather_icon\": \"10n\",\r\n    \"clouds_all\": 85,\r\n    \"wind_speed\": 1.73,\r\n    \"wind_deg\": 99,\r\n    \"wind_gust\": 1.97,\r\n    \"visibility\": 10000,\r\n    \"pop\": 0.6,\r\n    \"rain_3h\": 0.94,\r\n    \"sys_pod\": \"n\",\r\n    \"dt_txt\": \"2024-03-07 00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}weather/?lat=-20.8125851&lon=-49.3804212",
+					"host": [
+						"{{baseUrl}}weather"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "-20.8125851"
+						},
+						{
+							"key": "lon",
+							"value": "-49.3804212"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/city/?q=são josé do rio preto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}city/?q=são josé do rio preto",
+					"host": [
+						"{{baseUrl}}city"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "são josé do rio preto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/search/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}search/",
+					"host": [
+						"{{baseUrl}}search"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		}
+	]
+}
