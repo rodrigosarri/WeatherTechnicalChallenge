@@ -85,6 +85,7 @@ class SearchViewSet(viewsets.ModelViewSet):
             if value is not None:
                 queryset = queryset.filter(**{field: value})
 
+        queryset = queryset.order_by("-createdAt")
         return queryset
 
 class CityViewSet(viewsets.ModelViewSet):
@@ -124,6 +125,8 @@ class CityViewSet(viewsets.ModelViewSet):
                     return queryset
 
             queryset = City.objects.filter(name__icontains = q)
+            queryset = queryset.order_by("name")
+
             return queryset
         else:
             queryset = City.objects.all().order_by("-createdAt")
