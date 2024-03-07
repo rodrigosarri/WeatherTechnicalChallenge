@@ -73,8 +73,19 @@ def fetch_external_api_weather(lat, lon):
         return None
 
 class SearchViewSet(viewsets.ModelViewSet):
-    queryset = Search.objects.all().order_by("-createdAt")
+    queryset = Search.objects.all()
     serializer_class = SearchSerializar
+
+    def get_queryset(self):
+        queryset = Search.objects.all()
+        filterable_fields = ["lat", "lon", "user_agent", "platform", "screen_width", "screen_height", "language", "time_zone", "user_ip"]
+
+        for field in filterable_fields:
+            value = self.request.query_params.get(field)
+            if value is not None:
+                queryset = queryset.filter(**{field: value})
+
+        return queryset
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
@@ -115,7 +126,8 @@ class CityViewSet(viewsets.ModelViewSet):
             queryset = City.objects.filter(name__icontains = q)
             return queryset
         else:
-            return super().list(self.request)
+            queryset = City.objects.all().order_by("-createdAt")
+            return queryset
 
 class WeatherViewSet(viewsets.ModelViewSet):
     serializer_class = WeatherSerializer
