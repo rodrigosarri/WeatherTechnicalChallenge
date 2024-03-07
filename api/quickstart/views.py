@@ -9,7 +9,6 @@ from rest_framework import status
 from django.conf import settings
 from django.utils import timezone
 import datetime
-from datetime import timezone as dt_timezone
 
 def fetch_external_api_city(q):
     url = f"http://api.openweathermap.org/geo/1.0/direct?q={q}&appid={settings.OPENWEATHERMAP_API_KEY}"
@@ -85,7 +84,7 @@ class CityViewSet(viewsets.ModelViewSet):
         q = self.request.query_params.get("q", None)
 
         if q is not None:
-            matching_cities = City.objects.filter(name__icontains=q)
+            matching_cities = City.objects.filter(name__icontains = q)
 
             search_data = {}
             search_data["q"] = q
@@ -97,23 +96,23 @@ class CityViewSet(viewsets.ModelViewSet):
                 if value is not None:
                     search_data[param] = value
 
-            Search.objects.create(**search_data)
-
             if not matching_cities.exists():
                 external_data = fetch_external_api_city(q)
 
                 if external_data:
                     for city_data in external_data:
-                        City.objects.create(**city_data)
+                        search_data["lat"] = city_data["lat"]
+                        search_data["lon"] = city_data["lon"]
 
-                    queryset = City.objects.filter(name__icontains=q)
+                        City.objects.create(**city_data)
+                        Search.objects.create(**search_data)
+
+                    queryset = City.objects.filter(name__icontains = q)
                     queryset = queryset.order_by("name")
 
                     return queryset
-                else:
-                    return Response({"error": "Falha ao adquirir informações da lista das cidades"}, status = status.HTTP_400_BAD_REQUEST)
 
-            queryset = City.objects.filter(name__icontains=q)
+            queryset = City.objects.filter(name__icontains = q)
             return queryset
         else:
             return super().list(self.request)

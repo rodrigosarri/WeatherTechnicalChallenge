@@ -22,7 +22,7 @@ Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
    Execute o seguinte comando para criar um ambiente virtual:
 
    ```bash
-   python3 -m venv env
+   python -m venv env
    ```
 
 Ativação do Ambiente Virtual para Linux:
@@ -40,8 +40,22 @@ env\Scripts\activate
 Com o ambiente virtual ativado, instale as dependências necessárias executando:
 
 ```
-pip install django
-pip install djangorestframework
+pip install -r requirements.txt
+```
+
+## Configuração de Variável de Ambiente
+
+Para integrar a aplicação com a API do OpenWeatherMap e acessar dados meteorológicos em tempo real, é necessário adicionar uma chave de API como variável de ambiente. Siga os passos abaixo para configurar corretamente:
+
+    Obtenha sua Chave de API do OpenWeatherMap: Acesse o site oficial do OpenWeatherMap em https://home.openweathermap.org/ e crie uma conta ou faça login caso já possua uma. Após acessar sua conta, navegue até a seção de chaves de API e crie uma nova chave API para sua aplicação.
+
+    Criação do Arquivo .env: No diretório raiz do seu projeto, crie um arquivo denominado .env. Este arquivo será utilizado para armazenar variáveis de ambiente de forma segura.
+
+    Adicionar a Chave de API ao Arquivo .env: substituindo SUA_CHAVE_AQUI pela chave de API obtida no passo 1:
+
+.env
+```
+OPENWEATHERMAP_API_KEY=SUA_CHAVE_AQUI
 ```
 
 ## Configuração do Projeto

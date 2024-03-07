@@ -39,6 +39,8 @@ class Search(SoftDeletionModel):
 
     uuid = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     q = models.CharField(max_length = 255)
+    lat = models.FloatField()
+    lon = models.FloatField()
     userAgent = models.CharField(max_length = 255, blank = True, null = True)
     platform = models.CharField(max_length = 255, blank = True, null = True)
     screen_width = models.PositiveIntegerField(blank = True, null = True)
