@@ -27,7 +27,7 @@ Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
 
 Ativação do Ambiente Virtual para Linux:
 ```
-source env/bin/activate`
+source env/bin/activate
 ```
 
 
@@ -47,11 +47,11 @@ pip install -r requirements.txt
 
 Para integrar a aplicação com a API do OpenWeatherMap e acessar dados meteorológicos em tempo real, é necessário adicionar uma chave de API como variável de ambiente. Siga os passos abaixo para configurar corretamente:
 
-    Obtenha sua Chave de API do OpenWeatherMap: Acesse o site oficial do OpenWeatherMap em https://home.openweathermap.org/ e crie uma conta ou faça login caso já possua uma. Após acessar sua conta, navegue até a seção de chaves de API e crie uma nova chave API para sua aplicação.
+Obtenha sua Chave de API do OpenWeatherMap: Acesse o site oficial do OpenWeatherMap em https://home.openweathermap.org/ e crie uma conta ou faça login caso já possua uma. Após acessar sua conta, navegue até a seção de chaves de API e crie uma nova chave API para sua aplicação.
 
-    Criação do Arquivo .env: No diretório raiz do seu projeto, crie um arquivo denominado .env. Este arquivo será utilizado para armazenar variáveis de ambiente de forma segura.
+Criação do Arquivo .env: No diretório raiz do seu projeto, crie um arquivo denominado .env. Este arquivo será utilizado para armazenar variáveis de ambiente de forma segura.
 
-    Adicionar a Chave de API ao Arquivo .env: substituindo SUA_CHAVE_AQUI pela chave de API obtida no passo 1:
+Adicionar a Chave de API ao Arquivo .env: substituindo SUA_CHAVE_AQUI pela chave de API obtida no passo 1:
 
 .env
 ```
