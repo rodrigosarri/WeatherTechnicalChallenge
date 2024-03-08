@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { Weather, getWeatherParam } from "src/services/interface";
+import { onSelectCityParams } from "src/components/CitySelector/interface";
 
+import { Weather } from "src/services/interface";
 import { HomeWrapper, HomeContainer } from "./styled";
 
 import {
@@ -18,6 +19,7 @@ export const Home = () => {
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(false);
   const [forecastData, setForecastData] = useState<Weather[]>([]);
   const [selectedForecast, setSelectedForecast] = useState<Weather>();
+  const [cityName, setCityName] = useState<string>();
 
   const onSelectingDay = (dtTxt: string) => {
     const find = forecastData.find((forecast) => forecast.dt_txt === dtTxt);
@@ -28,10 +30,12 @@ export const Home = () => {
     }
   };
 
-  const getWeatherForecast = async ({ lat, lon }: getWeatherParam): Promise<void> => {
+  const getWeatherForecast = async ({ cityName, lat, lon }: onSelectCityParams): Promise<void> => {
     setIsForecastLoading(true);
-    const { results } = await getWeather({ lat, lon });
 
+    setCityName(cityName);
+
+    const { results } = await getWeather({ lat, lon });
     const filteredResults = results.reduce(
       (acc: Weather[], current: Weather) => {
         const currentDate = new Date(current.dt_txt).toDateString();
@@ -58,7 +62,11 @@ export const Home = () => {
             onSelectingDay={onSelectingDay}
           />
         </HomeContainer>
-        <ForecastDetails details={selectedForecast} isShow={isDetails} />
+        <ForecastDetails
+          cityName={cityName}
+          details={selectedForecast}
+          isShow={isDetails}
+        />
       </HomeWrapper>
     </>
   );

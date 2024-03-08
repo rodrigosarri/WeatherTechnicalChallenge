@@ -1,3 +1,9 @@
+export interface onSelectCityParams {
+  cityName: string;
+  lat: number,
+  lon: number
+}
+
 export interface CitySelectorProps {
-  onSelectCity: ({ lat, lon }: { lat: number; lon: number }) => void;
+  onSelectCity: ({ cityName, lat, lon }: onSelectCityParams) => void;
 }

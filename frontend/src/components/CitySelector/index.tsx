@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   CitySelectorProps
@@ -25,6 +26,8 @@ export const CitySelector: FC<CitySelectorProps> = ({
   const [filteredCities, setFilteredCities] = useState<City[]>([]);
   const [typingTimeout, setTypingTimeout] = useState<number | null>(null);
 
+  const navigate = useNavigate();
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTerm(value);
@@ -48,10 +51,12 @@ export const CitySelector: FC<CitySelectorProps> = ({
   };
 
   const handlerSelectCity = ({name, lat, lon}: { name: string, lat: number, lon: number }): void => {
+    navigate(`?q=${encodeURIComponent(name)}`, { replace: true });
+
     setSearchTerm(name);
     setFilteredCities([]);
 
-    onSelectCity({ lat, lon });
+    onSelectCity({ cityName: name, lat, lon });
   };
 
   return (
