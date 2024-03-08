@@ -30,7 +30,7 @@ def fetch_external_api_city(q):
         return None
 
 def fetch_external_api_weather(lat, lon):
-    url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&lang=pt_br&appid={settings.OPENWEATHERMAP_API_KEY}"
+    url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&lang=pt_br&units=metric&appid={settings.OPENWEATHERMAP_API_KEY}"
 
     response = requests.get(url)
 
@@ -146,7 +146,6 @@ class WeatherViewSet(viewsets.ModelViewSet):
 
         if lat and lon:
             queryset = queryset.filter(lat = lat, lon = lon, createdAt__gte = start_of_today, createdAt__lt = start_of_tomorrow)
-            queryset = queryset.order_by("createdAt")
 
             if not queryset.exists():
 
