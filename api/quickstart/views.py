@@ -100,7 +100,7 @@ class CityViewSet(viewsets.ModelViewSet):
 
             search_data = {}
             search_data["q"] = q
-            optional_params = ["userAgent", "platform", "screen_width", "screen_height", "language", "timeZone", "user_ip"]
+            optional_params = ["user_agent", "screen_width", "screen_height", "language", "time_zone"]
 
             for param in optional_params:
                 value = self.request.query_params.get(param)

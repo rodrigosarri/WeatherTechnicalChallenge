@@ -1,6 +1,8 @@
 import React, { useState, ChangeEvent, FC, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { City } from "src/services/interface";
+
 import {
   CitySelectorProps
 } from "./interface";
@@ -16,7 +18,7 @@ import {
   CitySelectorSuggestionItem
 } from "./styled";
 
-import { City } from "src/services/interface";
+import { getUserInfo } from "src/utils";
 import { getCities } from "src/services";
 
 export const CitySelector: FC<CitySelectorProps> = ({
@@ -28,6 +30,8 @@ export const CitySelector: FC<CitySelectorProps> = ({
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const userInfo = getUserInfo();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -47,7 +51,7 @@ export const CitySelector: FC<CitySelectorProps> = ({
   };
 
   const handlerSearchCity = async (): Promise<void> => {
-    const { results } = await getCities({ q: searchTerm });
+    const { results } = await getCities({ q: searchTerm, ...userInfo  });
     setFilteredCities(results);
   };
 
@@ -60,9 +64,8 @@ export const CitySelector: FC<CitySelectorProps> = ({
     onSelectCity({ cityName: name, lat, lon });
   };
 
-
   const getWeatherForecasts = async (q: string) => {
-    const { results } = await getCities({ q: q });
+    const { results } = await getCities({ q: q, ...userInfo });
 
     if (results) {
       const { name, lat, lon } = results[0];

@@ -42,7 +42,6 @@ class Search(SoftDeletionModel):
     lat = models.FloatField()
     lon = models.FloatField()
     user_agent = models.CharField(max_length = 255, blank = True, null = True)
-    platform = models.CharField(max_length = 255, blank = True, null = True)
     screen_width = models.PositiveIntegerField(blank = True, null = True)
     screen_height = models.PositiveIntegerField(blank = True, null = True)
     language = models.CharField(max_length = 10, blank = True, null = True)

@@ -40,3 +40,13 @@ export const getCurrentMonthAndDay = (): string => {
   const day = today.getDate().toString().padStart(2, "0");
   return `${month}, ${day}`;
 };
+
+export const getUserInfo = () => {
+  return {
+    user_agent: navigator.userAgent,
+    screen_width: window.screen.width,
+    screen_height: window.screen.height,
+    language: navigator.language,
+    time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  };
+};
