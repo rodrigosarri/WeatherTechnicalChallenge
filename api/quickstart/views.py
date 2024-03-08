@@ -4,8 +4,6 @@ from api.quickstart.serializers import SearchSerializar, CitySerializer, Weather
 from api.quickstart.models import Search, City, Weather
 
 import requests
-from rest_framework.response import Response
-from rest_framework import status
 from django.conf import settings
 from django.utils import timezone
 import datetime
@@ -191,13 +189,3 @@ class WeatherViewSet(viewsets.ModelViewSet):
                 queryset = queryset.order_by("createdAt")
 
         return queryset
-
-    def post(self, request, *args, **kwargs):
-        serializer = WeatherSerializer(data = request.data, many = isinstance(request.data, list))
-
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
