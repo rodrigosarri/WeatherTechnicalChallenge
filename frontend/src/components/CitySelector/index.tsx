@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent, FC } from "react";
+import React, { useState, ChangeEvent, FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import {
   CitySelectorProps
@@ -22,11 +23,12 @@ import { getCities } from "src/services";
 export const CitySelector: FC<CitySelectorProps> = ({
   onSelectCity
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredCities, setFilteredCities] = useState<City[]>([]);
   const [typingTimeout, setTypingTimeout] = useState<number | null>(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -58,6 +60,27 @@ export const CitySelector: FC<CitySelectorProps> = ({
 
     onSelectCity({ cityName: name, lat, lon });
   };
+
+
+  const getWeatherForecasts = async (q: string) => {
+    const { results } = await getCities({ q: q });
+
+    if (results) {
+      const { name, lat, lon } = results[0];
+
+      handlerSelectCity({ name, lat, lon });
+    }
+  };
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const q = queryParams.get("q");
+
+    if (q) {
+      setSearchTerm(q);
+      getWeatherForecasts(q);
+    }
+  }, [location.search]);
 
   return (
     <>
