@@ -10,13 +10,15 @@ import {
 
 import brandLogo from "src/assets/images/linx.png";
 
+import { getFormattedDate, getFormattedTime } from "src/utils";
+
 export const Header = () => {
   return (
     <>
       <HeaderContainer>
         <HeaderTimer>
-          <time>08/12</time>
-          <HeaderHour>13:00h</HeaderHour>
+          <time>{ getFormattedDate() }</time>
+          <HeaderHour>{ getFormattedTime() }</HeaderHour>
         </HeaderTimer>
         <HeaderIcon className="fa fa-home"></HeaderIcon>
         <HeaderImg src={brandLogo} alt="" title="" width={50} />

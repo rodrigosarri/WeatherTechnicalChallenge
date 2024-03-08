@@ -21,7 +21,7 @@ import {
 
 const iconUrl = process.env.REACT_APP_ICON_URL;
 
-import { getDayOfWeekAbbreviation } from "src/utils";
+import { getDayOfWeekAbbreviation, getFormattedTime, getCurrentMonthAndDay } from "src/utils";
 
 export const ForecastDetails: FC<ForecastDetailsProps> = ({
   cityName,
@@ -48,7 +48,7 @@ export const ForecastDetails: FC<ForecastDetailsProps> = ({
             </ForecastDetailsDayDegrees>
             <ForecastDetailsDayInfo>
               <span>{details.weather_description}</span>
-              <span>14:03 Fev 19</span>
+              <span>{getFormattedTime()} { getCurrentMonthAndDay() }</span>
             </ForecastDetailsDayInfo>
           </ForecastDetailsBody>
           <ForecastDetailsFooter>
