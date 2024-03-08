@@ -21,6 +21,8 @@ import {
 
 const iconUrl = process.env.REACT_APP_ICON_URL;
 
+import { getDayOfWeekAbbreviation } from "src/utils";
+
 export const ForecastDetails: FC<ForecastDetailsProps> = ({
   isShow = false,
   details,
@@ -32,7 +34,7 @@ export const ForecastDetails: FC<ForecastDetailsProps> = ({
           <ForecastDetailsHeader>
             <ForecastDetailsDay>
               <ForecastDetailsDayItem>
-                <ForecastDetailsDayTime>Terça-feira</ForecastDetailsDayTime>
+                <ForecastDetailsDayTime>{ getDayOfWeekAbbreviation(details.dt_txt, false) }</ForecastDetailsDayTime>
                 <ForecastDetailsDayCity>São Paulo</ForecastDetailsDayCity>
               </ForecastDetailsDayItem>
               {iconUrl && <ForecastDetailsDayIcon src={`${iconUrl}${details.weather_icon}@2x.png`} alt={details.weather_description} title={details.weather_description} />}

@@ -5,9 +5,16 @@ export function toQueryString(params: QueryStringProps): string | null {
   return query ? `?${query}` : "";
 }
 
-export const getDayOfWeekAbbreviation = (dateString: string): string => {
+export const getDayOfWeekAbbreviation = (dateString: string, short: boolean = true): string => {
   const date = new Date(dateString);
-  const days = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+
+  let days;
+  if (short) {
+    days = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+  } else {
+    days = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+  }
+
   const dayOfWeek = date.getDay();
   return days[dayOfWeek];
-}
+};
