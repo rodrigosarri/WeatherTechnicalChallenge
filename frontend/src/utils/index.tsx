@@ -19,15 +19,13 @@ export const getDayOfWeekAbbreviation = (dateString: string, short: boolean = tr
   return days[dayOfWeek];
 };
 
-export const getFormattedDate = (): string => {
-  const today = new Date();
+export const getFormattedDate = (today: Date = new Date()): string => {
   const day = today.getDate().toString().padStart(2, "0");
   const month = (today.getMonth() + 1).toString().padStart(2, "0");
   return `${day}/${month}`;
 };
 
-export const getFormattedTime = (): string => {
-  const now = new Date();
+export const getFormattedTime = (now: Date = new Date()): string => {
   const hours = now.getHours().toString().padStart(2, "0");
   const minutes = now.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}h`;

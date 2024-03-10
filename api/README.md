@@ -49,13 +49,21 @@ Para integrar a aplicação com a API do OpenWeatherMap e acessar dados meteorol
 
 Obtenha sua Chave de API do OpenWeatherMap: Acesse o site oficial do OpenWeatherMap em https://home.openweathermap.org/ e crie uma conta ou faça login caso já possua uma. Após acessar sua conta, navegue até a seção de chaves de API e crie uma nova chave API para sua aplicação.
 
-Criação do Arquivo .env: No diretório raiz do seu projeto, crie um arquivo denominado .env. Este arquivo será utilizado para armazenar variáveis de ambiente de forma segura.
+Criação do Arquivo .env: No diretório raiz do seu projeto, crie um arquivo denominado `.env`. Este arquivo será utilizado para armazenar variáveis de ambiente de forma segura.
 
 Adicionar a Chave de API ao Arquivo .env: substituindo SUA_CHAVE_AQUI pela chave de API obtida no passo 1:
 
 .env
 ```
 OPENWEATHERMAP_API_KEY=SUA_CHAVE_AQUI
+```
+
+## Modo de desenvolvedor
+Para habilitar o modo de desenvolvedor no projeto, é necessário incluir a variável DRF_DEVELOPMENT_MODE=True no arquivo .env, garantindo assim a ativação dessa configuração.
+
+.env
+```
+DRF_DEVELOPMENT_MODE=True
 ```
 
 ## Configuração do Projeto

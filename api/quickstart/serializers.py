@@ -7,7 +7,7 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
         model = City
         fields = "__all__"
 
-class SearchSerializar(serializers.HyperlinkedModelSerializer):
+class SearchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Search
         fields = "__all__"

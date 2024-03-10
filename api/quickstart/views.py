@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from api.quickstart.serializers import SearchSerializar, CitySerializer, WeatherSerializer
+from api.quickstart.serializers import SearchSerializer, CitySerializer, WeatherSerializer
 from api.quickstart.models import Search, City, Weather
 
 import requests
@@ -72,18 +72,36 @@ def fetch_external_api_weather(lat, lon):
 
 class SearchViewSet(viewsets.ModelViewSet):
     queryset = Search.objects.all()
-    serializer_class = SearchSerializar
+    serializer_class = SearchSerializer
+
+    def get_client_ip(self):
+        development_mode = settings.OPENWEATHERMAP_API_KEY
+
+        if development_mode:
+            return "127.0.0.1"
+
+        x_forwarded_for = self.request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(",")[0]
+        else:
+            ip = self.request.META.get("REMOTE_ADDR", "")
+        return ip
 
     def get_queryset(self):
         queryset = Search.objects.all()
-        filterable_fields = ["lat", "lon", "user_agent", "platform", "screen_width", "screen_height", "language", "time_zone", "user_ip"]
+        filterable_fields = ["lat", "lon", "user_agent", "screen_width", "screen_height", "language", "time_zone"]
+        user_ip = self.get_client_ip()
 
         for field in filterable_fields:
             value = self.request.query_params.get(field)
             if value is not None:
                 queryset = queryset.filter(**{field: value})
 
+        if user_ip:
+            queryset = queryset.filter(user_ip = user_ip)
+
         queryset = queryset.order_by("-createdAt")
+
         return queryset
 
 class CityViewSet(viewsets.ModelViewSet):

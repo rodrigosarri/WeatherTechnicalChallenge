@@ -53,7 +53,7 @@ export const Forecast: FC<ForecastProps> = ({
                   },
                   index
                 ) => (
-                  <ForecastDay onClick={() => handlerOnClick(dt_txt)} key={index} $active={dtTxt === dt_txt}>
+                  <ForecastDay to="#" onClick={() => handlerOnClick(dt_txt)} key={index} $active={dtTxt === dt_txt}>
                     <ForecastDayWeather>
                       {iconUrl && (
                         <ForecastDayIcon

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
 
-import { Home } from "src/pages";
+import { Home, Searches } from "src/pages";
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/buscas" element={<Searches />} />
           </Routes>
         </Router>
       </div>

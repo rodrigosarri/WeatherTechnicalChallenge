@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { ForecastDayProps } from "./interface";
 
@@ -28,7 +29,7 @@ export const ForecastDayWrapper = styled.div`
   padding: 8px 0;
 `;
 
-export const ForecastDay = styled.a<ForecastDayProps>`
+export const ForecastDay = styled(Link)<ForecastDayProps>`
   color: var(--color-mystical-grape);
   border: solid 1px var(--color-pixie-dust-plum);
   height: 80px;
@@ -39,6 +40,7 @@ export const ForecastDay = styled.a<ForecastDayProps>`
   justify-content: space-around;
   display: flex;
   background-color: var(--color-whimsical-lilac-dream);
+  text-decoration: none;
 
   transition: background-color 0.3s ease;
 

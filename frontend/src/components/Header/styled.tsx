@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
   color: var(--color-frosty-white);
@@ -47,24 +48,16 @@ export const HeaderHour = styled.time`
   color: var(--color-pixie-dust-plum);
 `;
 
-export const HeaderIcon = styled.i`
+export const HeaderIcon = styled(Link)`
+  color: var(--color-frosty-white);
+  text-decoration: none;
+
   @media only screen and (max-device-width: 812px) and (orientation: landscape) {
     transform: rotate(90deg);
     transform-origin: top left;
     position: relative;
     flex-direction: column;
     bottom: 0;
-    left: 32px;
-  }
-`;
-
-export const HeaderImg = styled.img`
-  @media only screen and (max-device-width: 812px) and (orientation: landscape) {
-    transform: rotate(90deg);
-    transform-origin: top left;
-    position: relative;
-    flex-direction: column;
-    bottom: 12px;
-    left: 32px;
+    left: 12px;
   }
 `;

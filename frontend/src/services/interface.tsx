@@ -52,3 +52,19 @@ export interface getWeatherParam {
   lat: number;
   lon: number;
 }
+
+export interface Search {
+  url: string;
+  q: string;
+  lat: number;
+  lon: number;
+  user_agent: string;
+  screen_width: number;
+  screen_height: number;
+  language: string;
+  time_zone: string;
+  user_ip: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}

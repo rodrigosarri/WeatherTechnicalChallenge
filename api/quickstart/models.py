@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.utils import timezone
+from django.conf import settings
 
 class SoftDeletionModel(models.Model):
     class Meta:
@@ -52,7 +53,9 @@ class Search(SoftDeletionModel):
     deletedAt = models.DateTimeField(blank = True, null = True)
 
     def save(self, *args, **kwargs):
-        if not self.user_ip:
+        development_mode = settings.OPENWEATHERMAP_API_KEY
+
+        if development_mode and not self.user_ip:
             self.user_ip = "127.0.0.1"
         super(Search, self).save(*args, **kwargs)
 

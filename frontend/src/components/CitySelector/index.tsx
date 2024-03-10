@@ -52,7 +52,10 @@ export const CitySelector: FC<CitySelectorProps> = ({
 
   const handlerSearchCity = async (): Promise<void> => {
     const { results } = await getCities({ q: searchTerm, ...userInfo  });
-    setFilteredCities(results);
+
+    if (results) {
+      setFilteredCities(results);
+    }
   };
 
   const handlerSelectCity = ({name, lat, lon}: { name: string, lat: number, lon: number }): void => {
@@ -82,6 +85,7 @@ export const CitySelector: FC<CitySelectorProps> = ({
       setSearchTerm(q);
       getWeatherForecasts(q);
     }
+
   }, [location.search]);
 
   return (
